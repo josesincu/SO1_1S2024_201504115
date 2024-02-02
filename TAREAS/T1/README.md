@@ -10,10 +10,10 @@ https://drive.google.com/file/d/1toxDSfL_8bRBOrPGrFzNEkotah9T1VHM/view?usp=shari
 ![Imagen y contenedor creado](./Imagenes/imagen_back.png)
 
 ## Creando contenedor y ejecuntadose el front
-![Imagen y contenedor ejecutandose](./Imagenes/Ejecucion_front.png)
+![Imagen y contenedor ejecutandose](./Imagenes/Ejecucion_Front.png)
 
 ## Docker Ps Ejecutandose back y front
 ![docker_ps](./Imagenes/docker_ps.png)
 
 ## Datos obtenidos
-![Datos mostrados en pantalla](./Imagenes/salida.png)
+![Datos mostrados en pantalla](./Imagenes/Salida.png)
