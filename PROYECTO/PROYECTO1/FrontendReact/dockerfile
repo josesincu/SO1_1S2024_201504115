@@ -1,0 +1,10 @@
+# Etapa de construcción
+FROM node:alpine as build-stage
+WORKDIR /usr/src/proyecto1/react
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+
+# docker build -t userDocker/So1Proyecto1React .
+# docker push userDocker/So1Proyecto1React

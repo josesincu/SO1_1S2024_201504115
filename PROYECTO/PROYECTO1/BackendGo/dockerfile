@@ -1,0 +1,9 @@
+FROM golang:alpine
+WORKDIR /usr/src/proyecto1/go
+COPY . .
+RUN go build -o goservice
+
+CMD ["./goservice"]
+
+# docker build -t userDocker/So1BackGo .
+# docker push userDocker/So1BackGo

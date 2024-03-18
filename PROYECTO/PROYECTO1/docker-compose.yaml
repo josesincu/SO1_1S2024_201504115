@@ -1,0 +1,49 @@
+version: '3'
+services:
+  base:
+    image: "mysql"
+    container_name: 'MYSQL_Base'
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: dark
+    volumes:
+      - base_mysql:/var/lib/mysql      
+    ports:
+      - "3306:3306"
+  backend:
+    image: "so1proyecto1backgo"
+    container_name: 'Backend_Go'
+    restart: always
+    build: ./back
+    environment:
+      DB_USER: root
+      DB_PASSWORD: dark
+      DB_HOST: MYSQL_Base
+      DB_PORT: 3306
+      DB_NAME: so1proyecto1
+      PORT_HOST: 2024
+    ports:
+      - "2024:2024"
+    volumes:
+    - type: bind
+      source: /proc
+      target: /proc
+  web:
+    image: "so1proyecto1frontreact"
+    container_name: 'FrontReact'
+    restart: always
+    build: ./front
+    volumes:
+      - react_static_files:/usr/src/proyecto1/react/dist
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - react_static_files:/etc/nginx/html
+    depends_on:
+      - backend
+volumes:
+  base_mysql:
+  react_static_files: {}
