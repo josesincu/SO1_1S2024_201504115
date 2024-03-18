@@ -58,15 +58,15 @@ Muestra los porcentajes de utilización de la memoria RAM y el CPU
 ![Porcentaje de uso](./Imagenes/donasReal.png)
 
 ### Historico
-Registra un historico del porcentaje de utilización de la memoria RAM y el CPU a lo largo del tiempo
+Registra un historico del porcentaje de utilización de la memoria RAM y el CPU a lo largo. del tiempo
 ![Porcentaje de uso historico](./Imagenes/historico.png)
 
 ### Arbol de procesos
-Aquí se puede visualizar en forma de arbol los procesos con sus respectivos hijos
+Aquí se puede visualizar en forma de arbol los procesos con sus respectivos hijos.
 ![Arbol de procesos](./Imagenes/arbolprocesos.png)
 
 ### Diagrama de estados
-En este apartado se puede simular como se crea, detiene, reanuda y termina un proceso
+En este apartado se puede simular como se crea, detiene, reanuda y termina un proceso.
 ![Estados](./Imagenes/estados.png)
 
 
