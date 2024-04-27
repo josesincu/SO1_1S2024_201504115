@@ -1,0 +1,24 @@
+COMANDO KUBERNETES
+kubectl apply -f nombre_archivo.yaml 	-> crea un pod
+kubectl delete -f nombre_archivo.yaml 	-> borra un pod
+kubectl get all 			-> obtenemos los pods
+kubectl decribe pod nombrepod		-> describe el pod especifico
+
+kubectl top pod nombrepod		-> describe los recursos usando
+kubectl logs nombre_pod -c nombre_contenedor	-> -c porque hay 2 o mas contenedores nombre especifico
+kubectl cp /archivo/origin pod:/ruta_final/archivo -c nombre_contenedor	-> -c porque hay 2 o mas contenedores copiar archivo
+
+ ====================================================== NAMESPACES ===================
+ kubectl get namespaces	-> obtenemos una lista de namespaces
+ kubectl create namespace nombre -> crea un namespace
+ kubectl apply -f nombre_archivo.yaml 	--namespace=nombre_namespace -> crea un pod con un namespace
+ 
+ 
+ ==================================== SERVICIOS ======================================
+ https://www.youtube.com/watch?v=gmFSmzAWcig&t=773s
+ MIN->47 PARA SERVICIOS EN VIDEO
+ 
+ =================================== DEPLOYMENT =====================================
+ ESCARLAR, Y REPARAR EN CASO DE FALLO
+ minuto-> 55
+ kubectl scale --replicas 5 deployment/nombre_deployment

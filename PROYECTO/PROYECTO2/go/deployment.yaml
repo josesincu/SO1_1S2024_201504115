@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go_producer
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mybackend
+  template:
+    metadata:
+      labels:
+        app: mybackend
+    spec:
+      containers:
+      - name: mybackend
+        image: animedark/so1_client_producer
+        env:
+        - name: ORACLE_USER
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: APP_USER
+        - name: ORACLE_PASS
+          valueFrom:
+            secretKeyRef:
+              name: app-secrets
+              key: APP_USER_PASSWORD
+        - name: ORACLE_CONNSTR
+          value: database-svc:1521/xepdb1
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "250m"
+        ports:
+        - containerPort: 3800
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-svc
+spec:
+  type: ClusterIP
+  selector:
+    app: mybackend
+  ports:
+  - port: 3800
+    targetPort: 3800
