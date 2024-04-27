@@ -9,8 +9,6 @@ import (
 
 	"google.golang.org/grpc"
 
-	"database/sql"
-
 	_ "github.com/go-sql-driver/mysql"
 )
 
@@ -42,26 +40,8 @@ func (s *server) ReturnInfo(ctx context.Context, in *pb.RequestId) (*pb.ReplyInf
 	/**
 	*	CONEXION BASES DE DATOS
 	 */
-	conexionMySql(data.Name, data.Album, data.Year, data.Rank)
+	//conexionMySql(data.Name, data.Album, data.Year, data.Rank)
 	return &pb.ReplyInfo{Info: "Hola cliente, recibí el album"}, nil
-}
-
-func conexionMySql(name string, album string, year string, rank string) {
-
-	db, err := sql.Open("mysql", "root:dark@tcp(127.0.0.1:3306)/T4")
-	if err != nil {
-		panic(err.Error())
-	}
-	defer db.Close()
-	var query string = "INSERT INTO BANDA (nombre, album, year_, rank_) VALUES(?,?,?,?)"
-	//_, err := base.Exec(query, nombre, email, username, pass)
-
-	_, err = db.Exec(query, name, album, year, rank)
-	if err != nil {
-		panic(err.Error())
-	}
-
-	fmt.Println("Banda ingresada con exito....!")
 }
 
 func main() {

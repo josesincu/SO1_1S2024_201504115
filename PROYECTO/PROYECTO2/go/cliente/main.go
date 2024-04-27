@@ -38,8 +38,8 @@ func insertData(c *fiber.Ctx) error {
 		Rank:  data["rank"],
 	}
 
-	conn, err := grpc.Dial("localhost:3001", grpc.WithTransportCredentials(insecure.NewCredentials()),
-		grpc.WithBlock())
+	conn, err := grpc.Dial("localhost:3001", grpc.WithTransportCredentials(insecure.NewCredentials()), grpc.WithBlock())
+
 	if err != nil {
 		log.Fatalln(err)
 	}
