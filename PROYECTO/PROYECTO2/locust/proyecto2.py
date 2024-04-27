@@ -8,7 +8,7 @@ debug = False
 def printDebug(msg):
     if debug:
         print(msg)
-#locust -f traffic.py levantar servidor
+#locust -f proyecto2.py levantar servidor
 class Reader():
     def __init__(self) -> None:
         self.array = []

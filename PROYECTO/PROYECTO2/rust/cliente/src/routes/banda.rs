@@ -27,7 +27,7 @@ pub async fn route_get_banda() -> Json<Banda>{
     match r {
         Ok(valor) => {
             // Aquí puedes acceder al valor correctamente
-            println!("El valor es: {:?}",valor["name"]);
+            //println!("El valor es: {:?}",valor["name"]);
             Json(ok_banda(valor))
         }
         Err(err) => {
@@ -41,10 +41,24 @@ pub async fn route_get_banda() -> Json<Banda>{
 
 // route will accept data in JSON format and expects a date variable in the function parameters
 #[post("/banda", format = "json", data = "<banda>")]
-pub fn route_add_banda(banda: Json<Banda>) -> Json<Banda> {
+pub async fn route_add_banda(banda: Json<Banda>) -> Json<Banda> {
 
     println!("insertando banda en rust!");
-    Json(services::banda::service_add_banda(banda))
+    let r = services::banda::service_add_banda(banda).await;
+    // Suponiendo que `object` es un `serde_json::Value` que contiene el objeto JSON
+    match r {
+        Ok(valor) => {
+            // Aquí puedes acceder al valor correctamente
+            Json(ok_banda(valor))
+        }
+        Err(err) => {
+            // Manejar el error
+            println!("Ocurrió un error: {}", err);
+            
+            Json(error_banda())
+        }
+    }
+    
 }
 
 
@@ -53,10 +67,10 @@ pub fn route_add_banda(banda: Json<Banda>) -> Json<Banda> {
  * 
  */
 fn ok_banda(valor : serde_json::Value) -> Banda{
-    let name = valor["name"].to_string();
-    let album = valor["album"].to_string();
-    let year = valor["year"].to_string();
-    let rank = valor["rank"].to_string();
+    let name = valor["name"].to_string().replace("\"", "");
+    let album = valor["album"].to_string().replace("\"", "");
+    let year = valor["year"].to_string().replace("\"", "");
+    let rank = valor["rank"].to_string().replace("\"", "");
 
     let banda = Banda {
         name,
